@@ -1,7 +1,6 @@
 (library
  (name timers)
  (public_name timers)
- ; (libraries containers)
 )
 
 (env (dev (flags (:standard -warn-error -A))))
