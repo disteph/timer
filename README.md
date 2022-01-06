@@ -1,4 +1,4 @@
-# timers
+# timer
 
 Very small library for measuring time in OCaml.
 See the API:
@@ -43,5 +43,5 @@ val is_running : t->bool
 For the main branch:
 
 ```
-opam pin git+https://github.com/disteph/timers.git#main
+opam pin git+https://github.com/disteph/timer.git#main
 ```
