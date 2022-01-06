@@ -1,17 +1,16 @@
 opam-version: "2.0"
-name: "timers"
-synopsis: "Timers library"
-description: "Timers library"
+name: "timer"
+synopsis: "Timer library"
+description: "Timer library"
 maintainer: "Stephane Graham-Lengrand <stephane.graham-lengrand@csl.sri.com>"
 authors: "Stephane Graham-Lengrand <stephane.graham-lengrand@csl.sri.com>"
-# license: "none yet"
-# homepage: "none yet"
-# bug-reports: "no way"
+license: "GPL3"
+homepage: "https://github.com/disteph/timer"
+bug-reports: "https://github.com/disteph/timer/issues"
 depends: [
   "ocaml" {>= "4.11" & < "4.12"}
   "dune"
   "ocamlfind"
-  "containers"
 ]
 build: [
     "dune" "build"
