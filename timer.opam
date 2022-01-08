@@ -8,7 +8,7 @@ license: "GPL3"
 homepage: "https://github.com/disteph/timer"
 bug-reports: "https://github.com/disteph/timer/issues"
 depends: [
-  "ocaml" {>= "4.11" & < "4.12"}
+  "ocaml"
   "dune"
   "ocamlfind"
 ]
