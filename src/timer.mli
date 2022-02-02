@@ -26,5 +26,8 @@ val name       : t->string
     but making sure that the timestamp for both actions is the same *)
 val transfer   : t->t->unit
 
+(** Gives the last system time that was used during a start, stop, or transfer *)
+val last_time  : unit -> float
+
 (** Whether a timer is running *)
 val is_running : t->bool

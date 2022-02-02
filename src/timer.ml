@@ -30,13 +30,20 @@ let stop time (s,timed,ongoing) =
                  ongoing := None
   | None -> raise (TimerException ("Trying to stop timer "^s^" but it is already stopped"))
 
+let last_time = ref 0.
+
+let sys_time () =
+  let r = Sys.time() in
+  last_time := r;
+  r
+        
 let transfer t t' =
-  let time = Sys.time() in
+  let time = sys_time() in
   stop time t;
   start time t'
 
-let start t = start (Sys.time()) t
-let stop t  = stop  (Sys.time()) t
+let start t = start (sys_time()) t
+let stop t  = stop  (sys_time()) t
 
 let read (_s,timed,ongoing) =
   match !ongoing with
@@ -48,3 +55,4 @@ let reset (_s,timed,ongoing) =
   | Some _last -> timed:=0.; ongoing:=Some(Sys.time())
   | None -> timed := 0.
 
+let last_time () = !last_time
