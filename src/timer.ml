@@ -32,27 +32,31 @@ let stop time (s,timed,ongoing) =
 
 let last_time = ref 0.
 
-let sys_time () =
-  let r = Sys.time() in
-  last_time := r;
-  r
+let time no_sys_call =
+  if no_sys_call then !last_time
+  else 
+    let r = Sys.time() in
+    last_time := r;
+    r
         
-let transfer t t' =
-  let time = sys_time() in
+let transfer ?(no_sys_call=false) t t' =
+  let time = time no_sys_call in
   stop time t;
   start time t'
 
-let start t = start (sys_time()) t
-let stop t  = stop  (sys_time()) t
+let start ?(no_sys_call=false) t = start (time no_sys_call) t
+let stop  ?(no_sys_call=false) t = stop  (time no_sys_call) t
 
-let read (_s,timed,ongoing) =
+let read ?(no_sys_call=false) (_s,timed,ongoing) =
   match !ongoing with
-  | Some last -> let span = Sys.time() -. last in !timed+.span
+  | Some last ->
+     let span = time no_sys_call -. last in
+     !timed+.span
   | None -> !timed
 
-let reset (_s,timed,ongoing) =
+let reset ?(no_sys_call=false) (_s,timed,ongoing) =
   match !ongoing with
-  | Some _last -> timed:=0.; ongoing:=Some(Sys.time())
+  | Some _last -> timed:=0.; ongoing:=Some(time no_sys_call)
   | None -> timed := 0.
 
 let last_time () = !last_time
