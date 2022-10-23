@@ -35,7 +35,7 @@ let last_time = ref 0.
 let time no_sys_call =
   if no_sys_call then !last_time
   else 
-    let r = Sys.time() in
+    let r = Unix.gettimeofday() in
     last_time := r;
     r
         
